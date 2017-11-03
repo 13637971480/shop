@@ -20,6 +20,8 @@ class Brand extends \yii\db\ActiveRecord
     public static $statusText = ['0'=>'隐藏','1'=>'显示'];
 
     public $imgFile;
+
+    public $code;
     /**
      * @inheritdoc
      */
@@ -40,6 +42,7 @@ class Brand extends \yii\db\ActiveRecord
             [['name'], 'string', 'max' => 30],
           //  [['logo'], 'string', 'max' => 100],
             [['imgFile'],'file','extensions'=>['jpg','png','gif'],'skipOnEmpty'=>true],
+            [['code'],'captcha','captchaAction' => 'brand/captcha'],
         ];
     }
 
@@ -55,6 +58,7 @@ class Brand extends \yii\db\ActiveRecord
            // 'logo' => '图片',
             'status' => '状态',
             'sort' => '排序',
+            'imgFile'=>'上传图片',
         ];
     }
 }

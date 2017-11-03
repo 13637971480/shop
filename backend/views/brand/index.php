@@ -10,7 +10,7 @@
         <th>操作</th>
     </tr>
     <?php foreach ($brands as $brand):?>
-    <tr>
+    <tr style="height: 60px">
         <td><?=$brand->id?></td>
         <td><?=$brand->name?></td>
         <td><?=\yii\bootstrap\Html::img("@web/".$brand->logo,['height'=>40,'width'=>100])?></td>
@@ -25,3 +25,9 @@
     <?php endforeach;?>
 
 </table>
+<?php
+echo \yii\widgets\LinkPager::widget([
+
+    'pagination' => $page
+]);
+?>

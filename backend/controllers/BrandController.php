@@ -8,7 +8,7 @@
 
 namespace backend\controllers;
 
-
+use yii\data\Pagination;
 use backend\models\Brand;
 use yii\web\Controller;
 use yii\web\UploadedFile;
@@ -16,11 +16,40 @@ use yii\web\UploadedFile;
 class BrandController extends Controller
 {
 
+    public function actions()
+    {
+        return [
+            'captcha' => [
+                'class' => 'yii\captcha\CaptchaAction',
+                'fixedVerifyCode' => YII_ENV_TEST ? 'testme' : null,
+                'minLength' => 4,//必需设置3或以上
+                'maxLength' => 5
+            ],
+
+        ];
+    }
+
+
     public function actionIndex()
     {
-        $brands = Brand::find()->all();
 
-        return $this->render('index',['brands'=>$brands]);
+        //1.总条数
+        $count = Brand::find()->count();
+
+        //2.每页显示条数
+        $pageSize = 5;
+
+        //创建分页对象
+        $page = new Pagination(
+            [
+                'pageSize' => $pageSize,
+                'totalCount' => $count
+            ]
+        );
+
+        $brands = Brand::find()->limit($page->limit)->offset($page->offset)->all();
+
+        return $this->render('index',['brands'=>$brands,'page'=>$page]);
     }
 
     /**
