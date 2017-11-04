@@ -1,4 +1,4 @@
-
+<h1>品牌管理</h1>
 <?=\yii\bootstrap\Html::a('添加品牌',['create'],['class'=>'btn btn-success'])?>
 <table class="table table-hover">
     <tr>

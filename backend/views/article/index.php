@@ -6,6 +6,7 @@
         <th>ID</th>
         <th>文章标题</th>
         <th>简介</th>
+        <th>分类</th>
         <th>状态</th>
         <th>排序</th>
         <th>添加时间</th>
@@ -16,6 +17,7 @@
             <td><?=$model->id?></td>
             <td><?=$model->name?></td>
             <td><?=$model->intro?></td>
+            <td><?=$model->articleCategory->name?></td>
             <td><?=\backend\models\Article::$statusText[$model->status]?></td>
             <td><?=$model->sort?></td>
             <td><?=date('Y-m-d H:i:s',$model->create_time)?></td>

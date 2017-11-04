@@ -1,5 +1,5 @@
 
-<h1>文章分类</h1>
+<h1>文章分类管理</h1>
 <?=\yii\bootstrap\Html::a('添加文章分类',['create'],['class'=>'btn btn-success'])?>
 <table class="table table-hover">
     <tr>
