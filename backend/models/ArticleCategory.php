@@ -5,29 +5,25 @@ namespace backend\models;
 use Yii;
 
 /**
- * This is the model class for table "brand".
+ * This is the model class for table "article_category".
  *
  * @property integer $id
  * @property string $name
  * @property string $intro
- * @property string $logo
  * @property integer $status
  * @property integer $sort
+ * @property integer $is_help
  */
-class Brand extends \yii\db\ActiveRecord
+class ArticleCategory extends \yii\db\ActiveRecord
 {
-
     public static $statusText = ['0'=>'隐藏','1'=>'显示'];
-
-    public $imgFile;
-
-    public $code;
+    public static $is_helpText = ['0'=>'否','1'=>'是'];
     /**
      * @inheritdoc
      */
     public static function tableName()
     {
-        return 'brand';
+        return 'article_category';
     }
 
     /**
@@ -36,13 +32,10 @@ class Brand extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
+            [['name','sort'], 'required'],
             [['intro'], 'string'],
-            [['status','name'], 'required'],
-            [['status', 'sort'], 'integer'],
-            [['name'], 'string', 'max' => 30],
-          //  [['logo'], 'string', 'max' => 100],
-            [['imgFile'],'file','extensions'=>['jpg','png','gif'],'skipOnEmpty'=>true],
-            [['code'],'captcha','captchaAction' => 'brand/captcha','on'=>'brand'],
+            [['status', 'sort', 'is_help'], 'integer'],
+            [['name'], 'string', 'max' => 50],
         ];
     }
 
@@ -53,12 +46,17 @@ class Brand extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'name' => '品牌',
+            'name' => '文章分类名',
             'intro' => '简介',
-           // 'logo' => '图片',
             'status' => '状态',
             'sort' => '排序',
-            'imgFile'=>'上传图片',
+            'is_help' => '是否是帮助分类',
         ];
+    }
+
+    public function getArticle()
+    {
+        return $this->hasMany(Article::className(),['article_category_id'=>'id']);
+
     }
 }
