@@ -19,7 +19,7 @@ use yii\widgets\ActiveForm;
     <?= $form->field($detail, 'content')->textarea(['rows'=>5]); ?>
 
     <div class="form-group">
-        <?= Html::submitButton('Submit', ['class' => 'btn btn-primary']) ?>
+        <?= Html::submitButton('修改', ['class' => 'btn btn-primary']) ?>
     </div>
     <?php ActiveForm::end(); ?>
 
