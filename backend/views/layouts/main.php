@@ -53,6 +53,14 @@ AppAsset::register($this);
                 [
                     'label'=>'品牌管理',
                     'url'=>'/brand/index'
+                ],
+                [
+                'label'=>'商品分类管理',
+                'url'=>'/goods-category/index'
+                ],
+                [
+                    'label'=>'商品管理',
+                    'url'=>'/goods/index'
                 ]
         ]
                 ]

@@ -13,7 +13,7 @@
     <tr style="height: 60px">
         <td><?=$brand->id?></td>
         <td><?=$brand->name?></td>
-        <td><?=\yii\bootstrap\Html::img("@web/".$brand->logo,['height'=>40,'width'=>100])?></td>
+        <td><?=\yii\bootstrap\Html::img($brand->nameText,['height'=>50,'width'=>100])?></td>
         <td><?=\backend\models\Brand::$statusText[$brand->status]?></td>
         <td><?=$brand->sort?></td>
         <td>

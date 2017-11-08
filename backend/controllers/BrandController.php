@@ -8,8 +8,11 @@
 
 namespace backend\controllers;
 
+use common\components\Upload;
+use flyok666\qiniu\Qiniu;
 use yii\data\Pagination;
 use backend\models\Brand;
+use yii\helpers\Json;
 use yii\web\Controller;
 use yii\web\UploadedFile;
 
@@ -63,16 +66,16 @@ class BrandController extends Controller
 
         if ($model->load($request->post())){
 
-            $model->imgFile=UploadedFile::getInstance($model,'imgFile');
+//            $model->imgFile=UploadedFile::getInstance($model,'imgFile');
 
 
 
             if ($model->validate()){
 
-                $imgFilePath = "images/brand/".uniqid().".".$model->imgFile->extension;
+//                $imgFilePath = "images/brand/".uniqid().".".$model->imgFile->extension;
 //                 var_dump($imgFilePath);exit();
-                $model->imgFile->saveAs($imgFilePath,false);
-                $model->logo=$imgFilePath;
+//                $model->imgFile->saveAs($imgFilePath,false);
+//                $model->logo=$imgFilePath;
 
                 if ($model->save()){
                     return $this->redirect(['index']);
@@ -99,16 +102,16 @@ class BrandController extends Controller
 
         if ($model->load($request->post())){
 
-            $model->imgFile=UploadedFile::getInstance($model,'imgFile');
+//            $model->imgFile=UploadedFile::getInstance($model,'imgFile');
 
 
 
             if ($model->validate()){
 
-                $imgFilePath = "images/brand/".uniqid().".".$model->imgFile->extension;
+//                $imgFilePath = "images/brand/".uniqid().".".$model->imgFile->extension;
 //                 var_dump($imgFilePath);exit();
-                $model->imgFile->saveAs($imgFilePath,false);
-                $model->logo=$imgFilePath;
+//                $model->imgFile->saveAs($imgFilePath,false);
+//                $model->logo=$imgFilePath;
 
                 if ($model->save()){
                     return $this->redirect(['index']);
@@ -129,6 +132,35 @@ class BrandController extends Controller
         $model->delete();
         return $this->redirect(['index']);
 
+    }
+
+    //图片上传
+    public function actionUpload(){
+//        var_dump($_FILES['file']['tmp_name']);exit;
+        //七牛云上传
+        //配置
+        $config = [
+            'accessKey'=>'9ZRPZ4_Qy8OYeFhxV2ILHtPzr_2O061ZKKlGP7Jb',//ak
+            'secretKey'=>'8XkGnsKBmrFCscQlLa81NIAPLAlPWVJVxiyuXtEn',//sk
+            'domain'=>'http://oyvhzh5a2.bkt.clouddn.com',//域名
+            'bucket'=>'shop',//空间名称
+            'area'=>Qiniu::AREA_HUANAN //区域
+
+        ];
+        //实例化对象
+        $qiniu = new Qiniu($config);
+        $key = time();
+        //调用上传方法
+        $qiniu->uploadFile($_FILES['file']['tmp_name'],$key);
+        $url = $qiniu->getLink($key);
+//        var_dump($url);exit;
+        $info=[
+            'code'=>0,
+            'url'=>$url,
+            'attachment'=>$url
+        ];
+
+        exit(json_encode($info));
     }
 
 

@@ -69,7 +69,7 @@ class GoodsCategoryController extends \yii\web\Controller
 
                 if ($model->parent_id==0){
 
-                    $model->makeRoot();
+                    $model->save();
                     \Yii::$app->session->setFlash('success','修改成功');
                     return $this->redirect(['index']);
 
@@ -99,7 +99,7 @@ class GoodsCategoryController extends \yii\web\Controller
     {
         $model =GoodsCategory::findOne($id);
 
-        $model->delete();
+        $model->deleteWithChildren();
 
         return $this->redirect(['index']);
 

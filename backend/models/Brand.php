@@ -40,8 +40,8 @@ class Brand extends \yii\db\ActiveRecord
             [['status','name'], 'required'],
             [['status', 'sort'], 'integer'],
             [['name'], 'string', 'max' => 30],
-          //  [['logo'], 'string', 'max' => 100],
-            [['imgFile'],'file','extensions'=>['jpg','png','gif'],'skipOnEmpty'=>true],
+            [['logo'], 'string', 'max' => 100],
+//            [['imgFile'],'file','extensions'=>['jpg','png','gif'],'skipOnEmpty'=>true],
             [['code'],'captcha','captchaAction' => 'brand/captcha','on'=>'brand'],
         ];
     }
@@ -55,10 +55,20 @@ class Brand extends \yii\db\ActiveRecord
             'id' => 'ID',
             'name' => '品牌',
             'intro' => '简介',
-           // 'logo' => '图片',
+            'logo' => '图片',
             'status' => '状态',
             'sort' => '排序',
             'imgFile'=>'上传图片',
         ];
     }
+
+    public function getNameText()
+    {
+        if(substr($this->logo,0,7)=='http://'){
+            return $this->logo;
+        }else{
+            return "@web/".$this->logo;
+        }
+    }
+
 }
