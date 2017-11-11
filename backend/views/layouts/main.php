@@ -36,7 +36,7 @@ AppAsset::register($this);
         ],
     ]);
     $menuItems = [
-        ['label' => 'Home', 'url' => ['/site/index']],
+        ['label' => '主页', 'url' => ['/site/index']],
         [
 
             'label' => '后台管理',
@@ -61,19 +61,23 @@ AppAsset::register($this);
                 [
                     'label'=>'商品管理',
                     'url'=>'/goods/index'
+                ],
+                [
+                     'label'=>'管理员账户管理',
+                    'url'=>'/admin/index'
                 ]
         ]
                 ]
 
     ];
     if (Yii::$app->user->isGuest) {
-        $menuItems[] = ['label' => 'Login', 'url' => ['/site/login']];
+        $menuItems[] = ['label' => '登录', 'url' => ['/admin/login']];
 
     } else {
         $menuItems[] = '<li>'
             . Html::beginForm(['/site/logout'], 'post')
             . Html::submitButton(
-                'Logout (' . Yii::$app->user->identity->username . ')',
+                '退出登录 (' . Yii::$app->user->identity->username . ')',
                 ['class' => 'btn btn-link logout']
             )
             . Html::endForm()
