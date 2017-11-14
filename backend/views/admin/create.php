@@ -17,7 +17,7 @@ use xj\uploadify\Uploadify;
     <?= $form->field($model, 'username') ?>
     <?= $form->field($model, 'password')->passwordInput() ?>
     <?= $form->field($model, 'email') ?>
-    <?= $form->field($model,'description')->checkboxList($roles)?>
+
 
     <div class="form-group">
         <?= Html::submitButton('提交', ['class' => 'btn btn-primary']) ?>

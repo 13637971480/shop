@@ -26,8 +26,8 @@ class AdminController extends \yii\web\Controller
         $request = \Yii::$app->request;
 
         //找到角色对象
-        $authManager = \Yii::$app->authManager;
-        $roles = $authManager->getRoles();
+//        $authManager = \Yii::$app->authManager;
+//        $roles = $authManager->getRoles();
 //        $roles = ArrayHelper::map($roles,'name','description');
 
         if ($request->isPost){
@@ -43,17 +43,20 @@ class AdminController extends \yii\web\Controller
 
 
                 $model->save();
-                    $role =$authManager->getRole($model->description);
-                    $authManager->assign($role,$model->id);
+
+//                $role =$authManager->getRole($model->description);
+//                if ($model->description ){
+//
+//                    foreach ($model->description as $v){
+//                       $role =$authManager->getRole($v);
+//                        $authManager->assign($role,$model->id);
+//                    }
+//                }
+
 
 //                var_dump($model->getErrors());exit();
 
 //                var_dump($model);exit();
-
-
-
-
-
 
                 \Yii::$app->session->setFlash('success','添加管理员成功');
                 return $this->redirect(['index']);
@@ -62,23 +65,23 @@ class AdminController extends \yii\web\Controller
 
         }
 
-        $roles = ArrayHelper::map($roles,'name','description');
+//        $roles = ArrayHelper::map($roles,'name','description');
 //        var_dump($roles);exit();
 
-        return $this->render('create', ['model' => $model,'roles'=>$roles]);
+        return $this->render('create', ['model' => $model]);
 
     }
 
-    public function actionUpdate($id,$name)
+    public function actionUpdate($id)
     {
         $model = Admin::findOne($id);
 
         $request = \Yii::$app->request;
         //找到角色对象
-        $authManager = \Yii::$app->authManager;
-        $roles = $authManager->getRoles();
-        $modelRole =  $authManager->getPermissionsByRole($name);
-        var_dump($modelRole);exit();
+//        $authManager = \Yii::$app->authManager;
+//        $roles = $authManager->getRoles();
+//        $modelRole =  $authManager->getPermissionsByRole($name);
+//        var_dump($modelRole);exit();
 
         if ($request->isPost){
 
@@ -99,9 +102,9 @@ class AdminController extends \yii\web\Controller
 
             }
         }
-        $roles = ArrayHelper::map($roles,'name','description');
+//        $roles = ArrayHelper::map($roles,'name','description');
 
-        return $this->render('create', ['model' => $model,'roles'=>$roles]);
+        return $this->render('create', ['model' => $model]);
 
 
     }
