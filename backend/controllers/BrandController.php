@@ -8,6 +8,7 @@
 
 namespace backend\controllers;
 
+use backend\models\Goods;
 use common\components\Upload;
 use flyok666\qiniu\Qiniu;
 use yii\data\Pagination;
@@ -129,7 +130,13 @@ class BrandController extends Controller
     public function actionDelete($id)
     {
         $model = Brand::findOne($id);
-        $model->delete();
+        if (Goods::find()->where(['brand_id'=>$id])->all()){
+            \Yii::$app->session->setFlash('danger','现该品牌有相关联的商品，请先删除与之关联的商品');
+    }else{
+            \Yii::$app->session->setFlash('success','品牌删除成功');
+            $model->delete();
+        }
+
         return $this->redirect(['index']);
 
     }

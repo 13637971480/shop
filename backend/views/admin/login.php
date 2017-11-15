@@ -10,13 +10,13 @@ use yii\bootstrap\ActiveForm;
 $this->title = '管理员登录';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="site-login">
+<div class="site-login container-fluid" >
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>请输入登录信息</p>
 
     <div class="row">
-        <div class="col-lg-5">
+        <div class="col-lg-3 ">
             <?php $form = ActiveForm::begin(['id' => 'login-form']); ?>
 
                 <?= $form->field($model, 'username')->textInput(['autofocus' => true]) ?>

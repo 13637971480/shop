@@ -10,6 +10,11 @@ use yii\helpers\ArrayHelper;
 
 class AdminController extends \yii\web\Controller
 {
+    public function actionStyle()
+    {
+        return $this->render('style');
+
+    }
     public function actionIndex()
     {
         //1.总条数

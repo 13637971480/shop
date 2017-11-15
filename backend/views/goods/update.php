@@ -29,7 +29,9 @@ use yii\widgets\ActiveForm;
             ]]])?>
     <?=$form->field($intro,'content')->widget('kucha\ueditor\UEditor',[]);?>
     <div class="form-group">
-        <?= Html::submitButton('修改商品', ['class' => 'btn btn-success']) ?>
+        <?= Html::submitButton('修改', ['class' => 'btn btn-success']) ?>
+        <?= \yii\bootstrap\Html::a('返回',['index'] ,['class' => 'btn btn-warning']) ?>
+
     </div>
     <?php ActiveForm::end(); ?>
 

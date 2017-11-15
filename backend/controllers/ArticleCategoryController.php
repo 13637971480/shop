@@ -9,6 +9,7 @@
 namespace backend\controllers;
 
 
+use backend\models\Article;
 use backend\models\ArticleCategory;
 use yii\data\Pagination;
 use yii\web\Controller;
@@ -73,7 +74,13 @@ class ArticleCategoryController extends Controller
     public function actionDelete($id)
     {
         $model = ArticleCategory::findOne($id);
-        $model->delete();
+        if (Article::find()->where(['article_category_id'=>$id])->all()){
+            \Yii::$app->session->setFlash('danger','该分类下有关联的文章，请先删除与之关联的文章');
+        }else{
+            \Yii::$app->session->setFlash('success','删除文章分类成功');
+            $model->delete();
+        }
+
         return $this->redirect(['index']);
     }
 

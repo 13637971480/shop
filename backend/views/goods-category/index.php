@@ -5,7 +5,7 @@
     <tr>
         <th>ID</th>
         <th>分类名称</th>
-        <th>父ID</th>
+        <th>上级ID</th>
         <th>操作</th>
     </tr>
 
@@ -16,7 +16,7 @@
             <td><?=$model->nameText?></td>
             <td><?=$model->parent_id?></td>
             <td>
-                <span class="glyphicon glyphicon-minus-sign cate"></span>
+                <span class="btn btn-primary glyphicon glyphicon-minus-sign cate"></span>
                 <?=\yii\bootstrap\Html::a('',['update','id'=>$model->id],['class'=>'btn btn-info glyphicon glyphicon-pencil'])?>
                 <?=\yii\bootstrap\Html::a('',['delete','id'=>$model->id],['class'=>'btn btn-danger glyphicon glyphicon-trash'])?>
             </td>
@@ -32,8 +32,8 @@
 $js=<<<EOF
   $(".cate").click(function(){
       
-       $(this).toggleClass("glyphicon-minus-sign");
-       $(this).toggleClass("glyphicon-plus-sign");
+       $(this).toggleClass("btn btn-primary  glyphicon-minus-sign");
+       $(this).toggleClass("btn btn-primary  glyphicon-plus-sign");
        
   
        var tr= $(this).parent().parent();

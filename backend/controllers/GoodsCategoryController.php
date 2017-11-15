@@ -2,6 +2,7 @@
 
 namespace backend\controllers;
 
+use backend\models\Goods;
 use backend\models\GoodsCategory;
 use yii\data\Pagination;
 use yii\helpers\Json;
@@ -114,9 +115,20 @@ class GoodsCategoryController extends \yii\web\Controller
 
     public function actionDelete($id)
     {
+        //找到要删除的节点ID
         $model =GoodsCategory::findOne($id);
-
-        $model->deleteWithChildren();
+        //首先判断要删除的节点下是否有子节点
+        if (GoodsCategory::find()->where(['parent_id'=>$id])->all()){
+            \Yii::$app->session->setFlash('danger','请先删除下级节点，再执行此操作');
+        }else{
+            //再判断要删除节点下是否有商品
+            if (Goods::find()->where(['goods_category_id'=>$id])->all()){
+                \Yii::$app->session->setFlash('danger','现该分类有相关联的商品，请先删除与之关联的商品');
+            }else{
+                //删除节点
+                $model->deleteWithChildren();
+            }
+        }
 
         return $this->redirect(['index']);
 

@@ -12,7 +12,7 @@ use yii\widgets\ActiveForm;
     <?php $form = ActiveForm::begin(); ?>
 
         <?= $form->field($model, 'name') ?>
-        <?= $form->field($model, 'sn')->hiddenInput() ?>
+
         <?= $form->field($model, 'logo')->widget('manks\FileInput', []); ?>
         <?= $form->field($model, 'goods_category_id')->dropDownList($options[1],['prompt'=>'请选择商品分类']) ?>
         <?= $form->field($model, 'brand_id')->dropDownList($options[0],['prompt'=>'请选择商品品牌']) ?>
@@ -30,6 +30,7 @@ use yii\widgets\ActiveForm;
         <?=$form->field($intro,'content')->widget('kucha\ueditor\UEditor',[]);?>
         <div class="form-group">
             <?= Html::submitButton('添加商品', ['class' => 'btn btn-success']) ?>
+            <?= \yii\bootstrap\Html::a('返回',['index'] ,['class' => 'btn btn-warning']) ?>
         </div>
     <?php ActiveForm::end(); ?>
 

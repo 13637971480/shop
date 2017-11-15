@@ -41,13 +41,17 @@ class GoodsController extends \yii\web\Controller
 
         $count=$query->count();
         $searchForm=new GoodsSearchForm();
-
+        $pageSize = 5;
         $page = new Pagination(
+
             [
-                'pageSize'=>5,
-                'totalCount'=>$count
+                'pageSize' => $pageSize,
+                'totalCount' => $count
             ]
         );
+
+
+
         $models=$query->limit($page->limit)->offset($page->offset)->all();
 
         return $this->render('index',['models'=>$models,'page'=>$page,'searchForm'=>$searchForm]);

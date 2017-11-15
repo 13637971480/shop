@@ -28,4 +28,6 @@ echo  \liyuze\ztree\ZTree::widget([
     'nodes' => $cates
 ]);
 echo \yii\bootstrap\Html::submitButton('提交',['class'=>'btn btn-success']);
+echo \yii\bootstrap\Html::a('返回',['index'] ,['class' => 'btn btn-warning']);
+
 \yii\bootstrap\ActiveForm::end();

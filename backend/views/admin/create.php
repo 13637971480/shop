@@ -21,6 +21,7 @@ use xj\uploadify\Uploadify;
 
     <div class="form-group">
         <?= Html::submitButton('提交', ['class' => 'btn btn-primary']) ?>
+        <?= \yii\bootstrap\Html::a('返回',['index'] ,['class' => 'btn btn-warning']) ?>
     </div>
     <?php ActiveForm::end(); ?>
 

@@ -14,7 +14,7 @@
 
 
 
-            <button type="submit" class="btn btn-info">搜索</button>
+            <button type="submit" class="btn btn-primary glyphicon glyphicon-search"></button>
         </form>
     </div>
 </div>
@@ -59,3 +59,10 @@
     <?php endforeach;?>
 
 </table>
+
+<?php
+echo \yii\widgets\LinkPager::widget([
+
+    'pagination' => $page
+]);
+?>

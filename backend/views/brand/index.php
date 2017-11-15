@@ -17,8 +17,8 @@
         <td><?=\backend\models\Brand::$statusText[$brand->status]?></td>
         <td><?=$brand->sort?></td>
         <td>
-            <?=\yii\bootstrap\Html::a('修改',['update','id'=>$brand->id],['class'=>'btn btn-info'])?>
-            <?=\yii\bootstrap\Html::a('删除',['delete','id'=>$brand->id],['class'=>'btn btn-danger'])?>
+            <?=\yii\bootstrap\Html::a('',['update','id'=>$brand->id],['class'=>'btn btn-info glyphicon glyphicon-pencil'])?>
+            <?=\yii\bootstrap\Html::a('',['delete','id'=>$brand->id],['class'=>'btn btn-danger  glyphicon glyphicon-trash'])?>
 
         </td>
     </tr>

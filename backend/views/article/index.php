@@ -23,8 +23,8 @@
             <td><?=date('Y-m-d H:i:s',$model->create_time)?></td>
 
             <td>
-                <?=\yii\bootstrap\Html::a('修改',['update','id'=>$model->id,'create_id'=>$model->id],['class'=>'btn btn-info'])?>
-                <?=\yii\bootstrap\Html::a('删除',['delete','id'=>$model->id,'create_id'=>$model->id],['class'=>'btn btn-danger'])?>
+                <?=\yii\bootstrap\Html::a('',['update','id'=>$model->id,'create_id'=>$model->id],['class'=>'btn btn-info glyphicon glyphicon-pencil '])?>
+                <?=\yii\bootstrap\Html::a('',['delete','id'=>$model->id,'create_id'=>$model->id],['class'=>'btn btn-danger glyphicon glyphicon-trash'])?>
 
             </td>
         </tr>
