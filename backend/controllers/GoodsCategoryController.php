@@ -3,12 +3,29 @@
 namespace backend\controllers;
 
 use backend\models\GoodsCategory;
+use yii\data\Pagination;
 use yii\helpers\Json;
 
 class GoodsCategoryController extends \yii\web\Controller
 {
     public function actionIndex()
     {
+//        //1.总条数
+//        $count = GoodsCategory::find()->count();
+//
+//        //2.每页显示条数
+//        $pageSize = 10;
+//
+//        //创建分页对象
+//        $page = new Pagination(
+//
+//            [
+//                'pageSize' => $pageSize,
+//                'totalCount' => $count
+//            ]
+//        );
+//        ->limit($page->limit)->offset($page->offset)
+
         $models = GoodsCategory::find()->orderBy('tree,lft')->all();
 
         return $this->render('index',['models'=>$models]);

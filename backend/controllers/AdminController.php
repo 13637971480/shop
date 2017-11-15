@@ -4,6 +4,7 @@ namespace backend\controllers;
 
 use backend\models\Admin;
 use backend\models\LoginForm;
+use yii\data\Pagination;
 use yii\helpers\ArrayHelper;
 
 
@@ -11,12 +12,29 @@ class AdminController extends \yii\web\Controller
 {
     public function actionIndex()
     {
-        $models = Admin::find()->all();
+        //1.总条数
+        $count = Admin::find()->count();
+
+        //2.每页显示条数
+        $pageSize = 5;
+
+        //创建分页对象
+        $page = new Pagination(
+
+            [
+                'pageSize' => $pageSize,
+                'totalCount' => $count
+            ]
+        );
+
+//        $brands = Brand::find()->limit($page->limit)->offset($page->offset)->all();
+
+        $models = Admin::find()->limit($page->limit)->offset($page->offset)->all();
         //实例化RBAC组件
         $authManager = \Yii::$app->authManager;
         //找到所有角色
         $roles = $authManager->getRoles();
-        return $this->render('index',['models'=>$models]);
+        return $this->render('index',['models'=>$models,'page'=>$page]);
     }
 
 
@@ -104,7 +122,7 @@ class AdminController extends \yii\web\Controller
         }
 //        $roles = ArrayHelper::map($roles,'name','description');
 
-        return $this->render('create', ['model' => $model]);
+        return $this->render('update', ['model' => $model]);
 
 
     }

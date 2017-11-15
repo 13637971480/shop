@@ -27,6 +27,7 @@
 
 </table>
 
+
 <?php
 $js=<<<EOF
   $(".cate").click(function(){
