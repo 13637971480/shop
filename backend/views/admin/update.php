@@ -15,8 +15,8 @@ use xj\uploadify\Uploadify;
 
     <?php $form = ActiveForm::begin(); ?>
     <?= $form->field($model, 'username') ?>
-    <?= $form->field($model, 'password')->passwordInput(['value'=>'']) ?>
-    <?= $form->field($model, 'password_s')->passwordInput(['value'=>'']) ?>
+    <?= $form->field($model, 'password')->passwordInput(['value'=>'','placeholder'=>'如不修改密码，则跳过此操作']) ?>
+    <?= $form->field($model, 'password_s')->passwordInput(['value'=>'','placeholder'=>'如不修改密码，则跳过此操作']) ?>
 
     <?= $form->field($model, 'email') ?>
 
