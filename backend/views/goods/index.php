@@ -5,15 +5,9 @@
     <div class="col-md-2"><?=\yii\bootstrap\Html::a('添加商品',['create'],['class'=>'btn btn-success'])?></div>
     <div class="col-md-10">
           <form class="form-inline pull-right">
-
-
             <input type="text" class="form-control" id="minPrice" name="minPrice" size="8" placeholder="最低价" value="<?=Yii::$app->request->get('minPrice')?>"> -
             <input type="text" class="form-control" id="maxPrice" name="maxPrice"  size="8" placeholder="最高价" value="<?=Yii::$app->request->get('maxPrice')?>">
                 <input type="text" class="form-control" id="keyword" name="keyword" placeholder="请输入商品名称或货号" value="<?=Yii::$app->request->get('keyword')?>">
-
-
-
-
             <button type="submit" class="btn btn-primary glyphicon glyphicon-search"></button>
         </form>
     </div>
@@ -22,8 +16,8 @@
     <tr>
         <th>ID</th>
         <th>商品名称</th>
-        <th>货号</th>
         <th>商品图片</th>
+        <th>货号</th>
         <th>商品分类</th>
         <th>品牌分类</th>
         <th>市场价格</th>
@@ -39,8 +33,8 @@
         <tr style="height: 60px" >
             <td><?=$model->id?></td>
             <td><?=mb_substr($model->name,0,5)?>...</td>
-            <td><?=$model->sn?></td>
             <td><?=\yii\bootstrap\Html::img($model->logo,['height'=>50,'width'=>50])?></td>
+            <td><?=$model->sn?></td>
             <td><?=$model->goodsCategory->name?></td>
             <td><?=$model->brand->name?></td>
             <td><?=$model->market_price?></td>

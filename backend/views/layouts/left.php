@@ -29,7 +29,7 @@
         <?= dmstr\widgets\Menu::widget(
             [
                 'options' => ['class' => 'sidebar-menu tree', 'data-widget'=> 'tree'],
-                'items' => mdm\admin\components\MenuHelper::getAssignedMenu(Yii::$app->user->id),
+                'items' => mdm\admin\components\MenuHelper::getAssignedMenu(Yii::$app->user->id)
 //                'items' => [
                     //['label' => 'Menu Yii2', 'options' => ['class' => 'header']],
 

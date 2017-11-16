@@ -14,7 +14,7 @@ return [
     'modules' => [
         'rbac' => [
             'class' => 'mdm\admin\Module',
-            'layout' => 'top-menu',
+//            'layout' => 'top-menu',
 
         ],
     ],

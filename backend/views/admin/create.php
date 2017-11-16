@@ -16,6 +16,7 @@ use xj\uploadify\Uploadify;
     <?php $form = ActiveForm::begin(); ?>
     <?= $form->field($model, 'username') ?>
     <?= $form->field($model, 'password')->passwordInput() ?>
+    <?= $form->field($model, 'password_s')->passwordInput() ?>
     <?= $form->field($model, 'email') ?>
 
 

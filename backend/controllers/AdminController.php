@@ -49,9 +49,9 @@ class AdminController extends \yii\web\Controller
         $request = \Yii::$app->request;
 
         //找到角色对象
-//        $authManager = \Yii::$app->authManager;
-//        $roles = $authManager->getRoles();
-//        $roles = ArrayHelper::map($roles,'name','description');
+        $authManager = \Yii::$app->authManager;
+        $roles = $authManager->getRoles();
+        $roles = ArrayHelper::map($roles,'name','description');
 
         if ($request->isPost){
 
@@ -67,14 +67,14 @@ class AdminController extends \yii\web\Controller
 
                 $model->save();
 
-//                $role =$authManager->getRole($model->description);
-//                if ($model->description ){
-//
-//                    foreach ($model->description as $v){
-//                       $role =$authManager->getRole($v);
-//                        $authManager->assign($role,$model->id);
-//                    }
-//                }
+                $role =$authManager->getRole($model->description);
+                if ($model->description ){
+
+                    foreach ($model->description as $v){
+                       $role =$authManager->getRole($v);
+                        $authManager->assign($role,$model->id);
+                    }
+                }
 
 
 //                var_dump($model->getErrors());exit();
@@ -88,17 +88,17 @@ class AdminController extends \yii\web\Controller
 
         }
 
-//        $roles = ArrayHelper::map($roles,'name','description');
-//        var_dump($roles);exit();
+        $roles = ArrayHelper::map($roles,'name','description');
+        var_dump($roles);exit();
 
-        return $this->render('create', ['model' => $model]);
+        return $this->render('create', ['model' => $model,'roles'=>$roles]);
 
     }
 
     public function actionUpdate($id)
     {
         $model = Admin::findOne($id);
-
+        $password_old = $model->password;
         $request = \Yii::$app->request;
         //找到角色对象
 //        $authManager = \Yii::$app->authManager;
@@ -111,7 +111,13 @@ class AdminController extends \yii\web\Controller
             if ($model->load($request->post()) && $model->validate()){
 
                 //给密码加密
-                $model->password=\Yii::$app->security->generatePasswordHash($model->password);
+                if ($model->password === ''){
+//                    var_dump($model->password);exit();
+                    $model->password = $password_old;
+                }else {
+//                    var_dump($model->password);exit();
+                    $model->password = \Yii::$app->security->generatePasswordHash($model->password);
+                }
                 $model->token = \Yii::$app->security->generateRandomString();
                 //追加添加时间
                 $model->last_login_time=time();

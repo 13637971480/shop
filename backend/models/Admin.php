@@ -23,6 +23,7 @@ class Admin extends \yii\db\ActiveRecord implements IdentityInterface
 {
     public $roles = [] ;
     public $description ;
+    public $password_s;
     /**
      * @inheritdoc
      */
@@ -37,9 +38,11 @@ class Admin extends \yii\db\ActiveRecord implements IdentityInterface
     public function rules()
     {
         return [
-            [['username', 'password', 'email'], 'required'],
+            [['username',  'email'], 'required'],
             [['username'],'unique'],
             [['description'],'safe'],
+            [['password'],'safe'],
+            [['password_s'], 'compare', 'compareAttribute' => 'password','message'=>'两次输入的密码不一致！']
 
         ];
     }
@@ -61,6 +64,7 @@ class Admin extends \yii\db\ActiveRecord implements IdentityInterface
             'last_login_time' => '最后登录时间',
             'last_login_ip' => '最后登录ip',
             'description' =>'角色',
+            'password_s' => '确认密码',
         ];
     }
 
