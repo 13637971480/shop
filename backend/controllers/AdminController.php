@@ -49,9 +49,9 @@ class AdminController extends \yii\web\Controller
         $request = \Yii::$app->request;
 
         //找到角色对象
-        $authManager = \Yii::$app->authManager;
-        $roles = $authManager->getRoles();
-        $roles = ArrayHelper::map($roles,'name','description');
+//        $authManager = \Yii::$app->authManager;
+//        $roles = $authManager->getRoles();
+//        $roles = ArrayHelper::map($roles,'name','description');
 
         if ($request->isPost){
 
@@ -88,10 +88,10 @@ class AdminController extends \yii\web\Controller
 
         }
 
-        $roles = ArrayHelper::map($roles,'name','description');
-        var_dump($roles);exit();
+//        $roles = ArrayHelper::map($roles,'name','description');
+//        var_dump($roles);exit();
 
-        return $this->render('create', ['model' => $model,'roles'=>$roles]);
+        return $this->render('create', ['model' => $model]);
 
     }
 
